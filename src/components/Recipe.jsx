@@ -44,6 +44,11 @@ const Recipe = ({ recipe }) => {
       <div className='col-md-4 mb-2'>
         <div className='card'>
           <h4 className='card-header text-center'>{recipe.strDrink}</h4>
+          <img
+            className='card-img-top'
+            src={recipe.strDrinkThumb}
+            alt={recipe.strDrink}
+          />
           <div className='card-body'>
             <button
               type='button'
