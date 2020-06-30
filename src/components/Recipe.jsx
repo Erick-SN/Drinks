@@ -38,7 +38,21 @@ const Recipe = ({ recipe }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const { setIdRecipe } = useContext(ModalContext);
+  const { setIdRecipe, recipeInfo, setRecipe } = useContext(ModalContext);
+  const showIngredients = (info) => {
+    let ingredients = [];
+    for (let i = 1; i < 16; i++) {
+      if (info[`strIngredient${i}`]) {
+        ingredients.push(
+          <li>
+            {info[`strIngredient${i}`]} {info[`strMeasure${i}`]}
+          </li>,
+        );
+      }
+    }
+
+    return ingredients;
+  };
   return (
     <>
       <div className='col-md-4 mb-2'>
@@ -63,9 +77,21 @@ const Recipe = ({ recipe }) => {
               open={open}
               onClose={() => {
                 setIdRecipe(null);
+                setRecipe({});
                 handleClose();
               }}>
-              <div style={modalStyle} className={classes.paper}></div>
+              <div style={modalStyle} className={classes.paper}>
+                <h2>{recipeInfo.strDrink}</h2>
+                <h3 className='mt-4'>Instructions</h3>
+                <p>{recipeInfo.strInstructions}</p>
+                <img
+                  className='img-fluid my-4'
+                  src={recipeInfo.strDrinkThumb}
+                  alt={recipe.strDrink}
+                />
+                <h4>Ingredients</h4>
+                <ul>{showIngredients(recipeInfo)}</ul>
+              </div>
             </Modal>
           </div>
         </div>
