@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CategoriesContext } from '../context/CategoriesContext';
 const Form = () => {
   return (
     <>
