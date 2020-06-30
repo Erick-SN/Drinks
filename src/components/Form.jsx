@@ -3,7 +3,7 @@ import { CategoriesContext } from '../context/CategoriesContext';
 import { RecipesContext } from '../context/RecipesContext';
 const Form = () => {
   const { categories } = useContext(CategoriesContext);
-  const { setSearchRecipes } = useContext(RecipesContext);
+  const { setSearchRecipes, setQuery } = useContext(RecipesContext);
   const [search, setSearch] = useState({
     name: '',
     category: '',
@@ -17,6 +17,7 @@ const Form = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setSearchRecipes(search);
+    setQuery(true);
   };
   return (
     <>
